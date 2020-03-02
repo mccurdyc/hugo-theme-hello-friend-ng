@@ -12,6 +12,57 @@
                     {{ partial "social-icons.html" . }}
                 </div>
             {{- end }}
+
+          <div class="recent-posts section">
+            <div class="posts">
+              <h2>Recent Work</h2>
+              {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.listedContentTypes }}
+              {{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) 3 }}
+              {{ range $paginator.Pages }}
+                <div class="post">
+                  <div class="post-header">
+                    <div class="meta">
+                      <div class="date">
+                        <span class="day">{{ dateFormat "02" .Date }}</span>
+                    <span class="rest">{{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf "%d" .Date.Month) }} {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2006" .Date }}{{ end }}</span>
+                      </div>
+                    </div>
+                    <div class="matter">
+                      <h3 class="title small">
+                        <a href="{{ .RelPermalink }}">{{.Title}}</a>
+                      </h3>
+                      <span class="description">
+                        {{ if isset .Params "description" }}
+                          {{ .Description }}
+                        {{ end }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              {{ end }}
+            </div>
+          </div>
+
+          <div role="status" class="row">
+            <div align="center">
+                {{ if .Site.Author.twitter }}
+                <h2>Recent Tweets</h2>
+                {{ end }}
+                  <a class="twitter-timeline"
+                    data-width="500"
+                    data-height="700"
+                    data-dnt="true"
+                    data-theme="light"
+                    data-link-color="#ffcc66"
+                    data-chrome="transparent noborders noscrollbar noheader"
+                    data-related="twitterapi,twitter"
+                    data-aria-polite="assertive"
+                    href="https://twitter.com/{{ .Site.Author.twitter }}?ref_src=twsrc%5Etfw">
+                  </a>
+                  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+          </div>
+
         </div>
     </main>
 {{ end }}
