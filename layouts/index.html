@@ -15,7 +15,7 @@
 
           <div class="recent-posts section">
             <div class="posts">
-              <h2>Recent Work</h2>
+              <h2>Recent Activity</h2>
               {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.listedContentTypes }}
               {{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) 3 }}
               {{ range $paginator.Pages }}
