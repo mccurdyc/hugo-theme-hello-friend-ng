@@ -13,6 +13,11 @@
                 <ul class="posts-list">
                     {{- range .Pages }}
                         <li class="post-item">
+                            {{ $image := .Param "image" }}
+                            {{- if $image }}
+                                <img src="{{ $image }}" class="book-cover" width="90" height="150"/>
+                            {{ end }}
+
                             <a href="{{.Permalink}}">
                                 <span class="post-title">{{.Title}}</span>
                                 <span class="post-day">{{ if .Site.Params.dateformShort }}{{ .Date.Format .Site.Params.dateformShort }}{{ else }}{{ .Date.Format "Jan 2"}}{{ end }}</span>
