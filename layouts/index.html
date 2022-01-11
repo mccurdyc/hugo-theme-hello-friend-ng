@@ -31,6 +31,10 @@
                       <h3 class="title small">
                         <a href="{{ .RelPermalink }}">{{.Title}}</a>
                       </h3>
+                      {{ $image := .Param "image" }}
+                      {{- if $image }}
+                          <img src="{{ $image }}" class="book-cover" width="90" height="150"/>
+                      {{ end }}
                       <span class="description">
                         {{ if isset .Params "description" }}
                           {{ .Description }}
