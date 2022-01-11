@@ -17,7 +17,7 @@
             <div class="posts">
               <h2>Recent Activity</h2>
               {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.listedContentTypes }}
-              {{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) 3 }}
+              {{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) 10 }}
               {{ range $paginator.Pages }}
                 <div class="post">
                   <div class="post-header">
