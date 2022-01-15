@@ -15,7 +15,7 @@
 
           <div class="recent-posts section">
             <div class="posts">
-              <h2>Recent Activity</h2>
+              <h2>What have I been up to?</h2>
               {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.listedContentTypes }}
               {{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) 10 }}
               {{ range $paginator.Pages }}
@@ -31,9 +31,16 @@
                       <h3 class="title small">
                         <a href="{{ .RelPermalink }}">{{.Title}}</a>
                       </h3>
-                      {{ $image := .Param "image" }}
-                      {{- if $image }}
-                          <img src="{{ $image }}" class="book-cover" width="90" height="150"/>
+                      {{- if eq .Page.Type "photos" }}
+                        {{ $image := .Param "image_thumbnail" }}
+                        {{- if $image }}
+                            <img src="{{ $image }}" class="photo"/>
+                        {{ end }}
+                      {{ else }}
+                        {{ $image := .Param "image" }}
+                        {{- if $image }}
+                            <img src="{{ $image }}" class="book-cover"/>
+                        {{ end }}
                       {{ end }}
                       <span class="description">
                         {{ if isset .Params "description" }}
@@ -50,7 +57,7 @@
           <div class="recent-posts section">
             <div class="posts">
                 {{ if .Site.Author.twitter }}
-                <h2>Recent Tweets</h2>
+                <h2>Tweets</h2>
                 {{ end }}
                   <a class="twitter-timeline"
                     data-width="100%"

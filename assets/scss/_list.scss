@@ -1,3 +1,33 @@
+.book-cover {
+  width: 90px;
+  height: 150px;
+}
+
+.photo {
+  width: 100%;
+  max-width: 400px;
+}
+
+.photos {
+  width: 100%;
+  max-width: 800px;
+  text-align: left;
+  padding: 20px;
+  margin: 20px auto;
+
+  @media #{$media-size-tablet} {
+    max-width: 660px;
+  }
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $light-border-color;
+
+    .dark-theme & {
+      border-color: $dark-border-color;
+    }
+  }
+}
+
 .posts {
   width: 100%;
   max-width: 800px;
