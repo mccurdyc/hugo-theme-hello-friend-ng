@@ -32,7 +32,7 @@
                         <a href="{{ .RelPermalink }}">{{.Title}}</a>
                       </h3>
                       {{- if eq .Page.Type "photos" }}
-                        {{ $image := .Param "image_thumbnail" }}
+                        {{ $image := .Param "image" }}
                         {{- if $image }}
                             <img src="{{ $image }}" class="photo"/>
                         {{ end }}
