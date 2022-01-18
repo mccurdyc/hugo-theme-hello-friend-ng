@@ -34,7 +34,7 @@
                       {{- if eq .Page.Type "photos" }}
                         {{ $image := .Param "image" }}
                         {{- if $image }}
-                            <img src="{{ $image }}" class="photo"/>
+                            <img src="{{ $image }}?quality=30&pad=200&bg-color=ffffff" class="photo"/>
                         {{ end }}
                       {{ else }}
                         {{ $image := .Param "image" }}
