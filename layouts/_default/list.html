@@ -23,9 +23,16 @@
                                 <span class="post-day">{{ if .Site.Params.dateformShort }}{{ .Date.Format .Site.Params.dateformShort }}{{ else }}{{ .Date.Format "Jan 2"}}{{ end }}</span>
                             </a>
 
-                            {{ $image := .Param "image" }}
-                            {{- if $image }}
-                                <img src="{{ $image }}" class="book-cover"/>
+                            {{- if eq .Page.Type "books" }}
+                              {{ $image := .Param "image" }}
+                              {{- if $image }}
+                                  <img src="{{ $image }}" class="book-cover"/>
+                              {{ end }}
+                            {{ else }}
+                              {{ $image := .Param "image" }}
+                              {{- if $image }}
+                                  <img src="{{ $image }}?height=0.25&quality=30&pad=20&bg-color=ffffff" class="photo"/>
+                              {{ end }}
                             {{ end }}
 
                             <p>
