@@ -1,7 +1,7 @@
 {{ define "main" }}
     <main aria-role="main">
         <div>
-            <h1>{{ .Site.Title }}</h1>
+            <h1>"{{ .Site.Title | upper }}"</h1>
 
             {{- with .Site.Params.homeSubtitle }}
                 <p>{{.}}</p>
@@ -15,7 +15,7 @@
 
           <div class="recent-posts section">
             <div class="posts">
-              <h2>What have I been up to?</h2>
+              <h2>"TIMELINE"</h2>
               {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.listedContentTypes }}
               {{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) 50 }}
               {{ range $paginator.Pages }}
@@ -23,13 +23,12 @@
                   <div class="post-header">
                     <div class="meta">
                       <div class="date">
-                        <span class="day">{{ dateFormat "02" .Date }}</span>
-                    <span class="rest">{{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf "%d" .Date.Month) }} {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2006" .Date }}{{ end }}</span>
+                        <span class="day">{{ dateFormat "2006.01.02" .Date }}</span>
                       </div>
                     </div>
                     <div class="matter">
                       <h3 class="title small">
-                        <a href="{{ .RelPermalink }}">{{.Title}}</a>
+                        <a href="{{ .RelPermalink }}">"{{.Title | upper}}"</a>
                       </h3>
                       {{- if eq .Page.Type "photos" }}
                         {{ $image := .Param "image" }}
@@ -57,7 +56,7 @@
           <div class="recent-posts section">
             <div class="posts">
                 {{ if .Site.Author.twitter }}
-                <h2>Tweets</h2>
+                <h2>"TWEETS"</h2>
                 {{ end }}
                   <a class="twitter-timeline"
                     data-width="100%"
