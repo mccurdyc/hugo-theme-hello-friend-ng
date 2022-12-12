@@ -5,6 +5,16 @@
 {{ $secureJS := slice $main $menu $prism $theme | resources.Concat "bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
 <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
+  <!--
+  *** jQuery must be loaded before load-photoswipe.js ***
+  - If your template already loads jQuery in the header then you don't need to load it again here.
+  - If your template already loads jQuery in the footer, then you could load load-photoswipe.js from the footer instead
+  -->
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+  <script src="/js/load-photoswipe.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js" integrity="sha256-PWHOlUzc96pMc8ThwRIXPn8yH4NOLu42RQ0b9SpnpFk=" crossorigin="anonymous"></script>
+
 {{- if .Site.GoogleAnalytics }}
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
