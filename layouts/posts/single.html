@@ -33,7 +33,11 @@
             {{ end }}
 
             <div class="post-content">
+              {{- if eq .Page.Type "photos" }}
+                {{ .Content | upper }}
+              {{- else }}
                 {{ .Content }}
+              {{- end }}
             </div>
         </article>
 
