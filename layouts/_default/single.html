@@ -13,7 +13,7 @@
         </div>
 
         <article>
-            <h2 class="post-title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h2>
+            <h2 class="post-title"><a href="{{ .Permalink }}">"{{ .Title | upper | markdownify }}"</a></h2>
 
             {{- if .Params.toc }}
                 <hr />

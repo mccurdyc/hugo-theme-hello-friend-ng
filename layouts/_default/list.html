@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="/css/list.css" />
 
     <main class="posts">
-        <h1>{{ .Title }}</h1>
+        <h1>"{{ .Title | upper }}"</h1>
 
         <p>
         {{- if .Content }}
@@ -19,8 +19,8 @@
                     {{- range .Pages }}
                         <li class="post-item">
                             <a href="{{.Permalink}}">
-                                <span class="post-title">{{.Title}}</span>
-                                <span class="post-day">{{ if .Site.Params.dateformShort }}{{ .Date.Format .Site.Params.dateformShort }}{{ else }}{{ .Date.Format "Jan 2"}}{{ end }}</span>
+                                <span class="post-title">"{{ .Title | upper }}"</span>
+                                <span class="post-day">{{ .Date.Format "2006.01.02" }}</span>
                             </a>
 
                             {{- if eq .Page.Type "books" }}
@@ -39,7 +39,7 @@
                             {{ $description := .Param "description" }}
                             {{- if $description }}
                                 <span class="description">
-                                    {{ $description }}
+                                    {{ $description | upper }}
                                 </span>
                             {{ end }}
                             <p>
