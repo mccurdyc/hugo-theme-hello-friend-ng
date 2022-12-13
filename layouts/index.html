@@ -19,6 +19,8 @@
               {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.listedContentTypes }}
               {{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) 50 }}
               {{ range $paginator.Pages }}
+                {{ if (.Param "hide" | default false) }}
+                {{ else }}
                 <div class="post">
                   <div class="post-header">
                     <div class="meta">
@@ -33,7 +35,7 @@
                       {{- if eq .Page.Type "photos" }}
                         {{ $image := .Param "image" }}
                         {{- if $image }}
-                            <img src="{{ $image }}?height=0.3&quality=40" class="photo"/>
+                            <img src="{{ $image }}?crop=1:1&quality=40&height=0.5&width=0.5" class="photo"/>
                         {{ end }}
                       {{ else }}
                         {{ $image := .Param "image" }}
@@ -49,6 +51,7 @@
                     </div>
                   </div>
                 </div>
+                {{ end }}
               {{ end }}
             </div>
           </div>

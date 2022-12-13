@@ -17,6 +17,8 @@
 
                 <ul class="posts-list">
                     {{- range .Pages }}
+                      {{ if (.Param "hide" | default false) }}
+                      {{ else }}
                         <li class="post-item">
                             <a href="{{.Permalink}}">
                                 <span class="post-title">"{{ .Title | upper }}"</span>
@@ -31,7 +33,7 @@
                             {{ else }}
                               {{ $image := .Param "image" }}
                               {{- if $image }}
-                                  <img src="{{ $image }}?height=0.3&quality=40" class="photo"/>
+                                  <img src="{{ $image }}?crop=1:1&quality=40" class="photo"/>
                               {{ end }}
                             {{ end }}
 
@@ -44,6 +46,7 @@
                             {{ end }}
                             <p>
                         </li>
+                      {{ end }}
                     {{- end }}
                 </ul>
             </div>
