@@ -1,5 +1,5 @@
 {{ define "main" }}
-    <main aria-role="main">
+    <main aria-role="main" class="post">
         <div>
             <h1>"{{ .Site.Title | upper }}"</h1>
 
@@ -13,67 +13,68 @@
                 </div>
             {{- end }}
 
-          <div class="recent-posts section">
-            <div class="posts">
-              <h2>"TIMELINE"</h2>
-              {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.listedContentTypes }}
-              {{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) 50 }}
-              {{ range $paginator.Pages }}
-                {{ if (.Param "hide" | default false) }}
-                {{ else }}
-                <div class="post">
-                  <div class="post-header">
-                    <div class="meta">
-                      <div class="date">
-                        <span class="day">{{ dateFormat "2006.01.02" .Date }}</span>
+        {{ if .Site.Params.image.url }}
+            <link rel="stylesheet" href="https://www.mccurdyc.dev/css/hugo-easy-gallery.css">
+
+            <article>
+              <div class="post-content">
+                {{- $image := .Site.Params.image.url }}
+                {{- $imageLowRes := (printf "%s%s" $image "?quality=80&?height=0.4&width=0.4") }}
+                {{- $thumb := (printf "%s%s" $image "?quality=50&height=0.4&width=0.4") }}
+
+                <div class="box fancy-figure">
+                  <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                    <div class="img"{{ if .Parent }} style="background-image: url('{{ $imageLowRes }}');"{{ end }}>
+                      <img itemprop="thumbnail" src="{{ $thumb }}"/>
+                    </div>
+
+                    <a href="{{ $imageLowRes }}" itemprop="contentUrl"></a>
+                  </figure>
+                </div>
+
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous">
+
+                <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="pswp__bg"></div>
+                <div class="pswp__scroll-wrap">
+                    <div class="pswp__container">
+                      <div class="pswp__item"></div>
+                      <div class="pswp__item"></div>
+                      <div class="pswp__item"></div>
+                    </div>
+
+                    <div class="pswp__ui pswp__ui--hidden">
+                    <div class="pswp__top-bar">
+
+                      <div class="pswp__counter"></div>
+                      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                      <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                          <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div class="matter">
-                      <h3 class="title small">
-                        <a href="{{ .RelPermalink }}">"{{.Title | upper}}"</a>
-                      </h3>
-                      {{- if eq .Page.Type "photos" }}
-                        {{ $image := .Param "image" }}
-                        {{- if $image }}
-                            <img src="{{ $image }}?crop=1:1&quality=40&height=0.5&width=0.5" class="photo"/>
-                        {{ end }}
-                      {{ else }}
-                        {{ $image := .Param "image" }}
-                        {{- if $image }}
-                            <img src="{{ $image }}" class="book-cover"/>
-                        {{ end }}
-                      {{ end }}
-                      <span class="description">
-                        {{ if isset .Params "description" }}
-                          {{ .Description }}
-                        {{ end }}
-                      </span>
+                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                      <div class="pswp__share-tooltip"></div>
                     </div>
-                  </div>
+                    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                    </button>
+                    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                    </button>
+                    <div class="pswp__caption">
+                      <div class="pswp__caption__center"></div>
+                    </div>
+                    </div>
+                    </div>
                 </div>
-                {{ end }}
-              {{ end }}
-            </div>
-          </div>
-
-          <div class="recent-posts section">
-            <div class="posts">
-                {{ if .Site.Author.twitter }}
-                <h2>"TWEETS"</h2>
-                {{ end }}
-                  <a class="twitter-timeline"
-                    data-width="100%"
-                    data-dnt="true"
-                    data-theme="light"
-                    data-chrome="noborders noscrollbar noheader"
-                    data-related="twitterapi,twitter"
-                    data-aria-polite="assertive"
-                    data-dnt="true"
-                    href="https://twitter.com/{{ .Site.Author.twitter }}?ref_src=twsrc%5Etfw">
-                  </a>
-                  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-          </div>
+              </div>
+            </article>
+        {{ else }}
+        {{ end }}
 
         </div>
     </main>
