@@ -1,18 +1,18 @@
 {{ define "main" }}
     <main aria-role="main" class="post">
         <div>
-            <h1>"{{ .Site.Title | upper }}"</h1>
-
-            {{- with .Site.Params.homeSubtitle }}
-                <p>{{.}}</p>
-            {{- end }}
-
-            {{- with .Site.Params.social }}
-                <div>
-                    {{ partial "social-icons.html" . }}
-                </div>
-            {{- end }}
-
+            <!-- <h1>"{{ .Site.Title | upper }}"</h1> -->
+            <!--  -->
+            <!-- {{- with .Site.Params.homeSubtitle }} -->
+            <!--     <p>{{.}}</p> -->
+            <!-- {{- end }} -->
+            <!--  -->
+            <!-- {{- with .Site.Params.social }} -->
+            <!--     <div> -->
+            <!--         {{ partial "social-icons.html" . }} -->
+            <!--     </div> -->
+            <!-- {{- end }} -->
+            <!--  -->
         {{ if .Site.Params.image.url }}
             <link rel="stylesheet" href="https://www.mccurdyc.dev/css/hugo-easy-gallery.css">
 
