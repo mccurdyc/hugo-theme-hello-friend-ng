@@ -109,7 +109,7 @@
       margin: 0 auto;
       padding: 5px 10px;
       background: $light-background;
-      color: $light-color-secondary;
+      color: $light-color;
       font-size: .8rem;
       text-transform: uppercase;
       text-decoration: none;
@@ -118,7 +118,7 @@
 
       .dark-theme & {
         background: $dark-background;
-        color: $dark-color-secondary;
+        color: $dark-color;
       }
     }
 

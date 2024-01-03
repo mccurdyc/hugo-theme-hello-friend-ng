@@ -20,7 +20,7 @@
   }
 
   &:not(:last-of-type) {
-    border: 1px solid $light-border-color;
+    border: 1px 0 dashed $light-border-color;
 
     .dark-theme & {
       border-color: $dark-border-color;
@@ -82,7 +82,7 @@
     }
 
     &-item {
-      border: 5px solid $light-border-color;
+      border: 1px solid $light-border-color;
 
       a {
         display: flex;
