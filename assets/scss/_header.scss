@@ -5,9 +5,11 @@
   justify-content: left;
   position: relative;
   padding: 1px;
+  border: 3px 0 dashed $light-border-color;
 
   .dark-theme & {
     background: $dark-background-secondary;
+    border: 3px 0 dashed $dark-border-color;
   }
 
   &__right {
