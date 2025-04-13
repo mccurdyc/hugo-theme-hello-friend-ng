@@ -19,7 +19,7 @@
             <article>
               <div class="post-content">
                 {{- $image := .Site.Params.image.url }}
-                {{- $imageLowRes := (printf "%s%s" $image "?quality=80&?height=0.4&width=0.4") }}
+                {{- $imageLowRes := (printf "%s%s" $image "?quality=80&height=0.4&width=0.4") }}
                 {{- $thumb := (printf "%s%s" $image "?quality=50&height=0.4&width=0.4") }}
 
                 <div class="box fancy-figure">
