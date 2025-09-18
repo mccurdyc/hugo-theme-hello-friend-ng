@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /* alternative color */
-$alt-color: #ffa500;
+$alt-color: #000000;
 
 /* light theme color */
 $light-background: #ffa500;
@@ -11,11 +11,12 @@ $light-color-secondary: #ffc04d;
 $light-border-color: #000000;
 
 /* dark theme colors */
-$dark-background: #1e00ff;
-$dark-background-secondary: #0062ff;
-$dark-color: #ffffff;
-$dark-color-secondary: #0062ff;
-$dark-border-color: #ffffff;
+// TODO: fix button text
+$dark-background: #000000;
+$dark-background-secondary: #000000;
+$dark-color: #ffa500;
+$dark-color-secondary: #ffa500;
+$dark-border-color: #ffa500;
 
 $media-size-phone: "(max-width: 684px)";
 $media-size-tablet: "(max-width: 900px)";
